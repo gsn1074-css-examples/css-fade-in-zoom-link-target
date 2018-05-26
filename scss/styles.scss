@@ -1,0 +1,110 @@
+$nav-link__fontSize: 1rem;
+$nav-link__borderWidth: $nav-link__fontSize / 8;
+$nav-link__padding: $nav-link__fontSize / 2;
+$nav-link__margin: 0rem;
+$nav-link__height: ($nav-link__margin * 2) + ($nav-link__padding * 2) + ($nav-link__borderWidth * 2) + $nav-link__fontSize;
+
+$nav-padding: $nav-link__fontSize / 2;
+$nav-margin: 0rem;
+$nav-height: ($nav-margin * 2) + ($nav-padding * 2) + $nav-link__height;
+
+$section-paddingTop: $nav-height;
+
+* {
+	margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    min-width: 400px;
+    height: 100vh;
+    font-family: Helvetica, sans-serif;
+    background: black;
+	color: #fff;
+}
+
+nav {
+	display: flex;
+	align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+	position: fixed;
+	width: 100%;
+	z-index: 9500;
+    padding: $nav-padding;
+    margin: $nav-margin;
+}
+
+nav a {
+    box-sizing: border-box;
+    padding: $nav-link__padding;
+    margin: $nav-link__margin;
+    white-space: nowrap;
+    line-height: $nav-link__fontSize;
+    font-size: $nav-link__fontSize;
+	text-decoration: none;
+    color: rgba(255, 255, 255, .75);
+	border: $nav-link__borderWidth solid rgba(255, 255, 255, .75);
+    transition: border 1s;
+}
+
+nav a:hover {
+    border-bottom: $nav-link__borderWidth dashed rgba(255, 255, 255, .75);
+}
+
+nav a:nth-child(1) {
+	border-width: 0rem;
+}
+
+section {
+    position: absolute;
+    top: 15vh;
+	left: 15vw;
+	width: 70vw;
+    height: 70vh;
+    padding-top: $section-paddingTop;
+	opacity: 0;
+	background-size: 100% 100%;
+    transition: all .5s;
+}
+
+section:target {
+	top: 0;
+	left: 0;
+	width: 100vw;
+    height: calc(100vh - #{$section-paddingTop});
+    padding-top: $section-paddingTop;
+	opacity: 1;
+	z-index: 9000;
+}
+
+section h1 {
+	position: relative;
+	display: inline-block;
+    left: -100vw;
+    padding-top: $nav-link__fontSize;
+	font-size: $nav-link__fontSize * 3;
+    transition: all .75s;
+}
+
+section:target h1 {
+    left: 50vw;
+    transform: translate(-50%, 0%);
+}
+
+section p {
+    padding: 1em;
+}
+
+section#first { 
+    background-image: url(../img/image1.jpg); 
+}
+
+section#second { 
+    background-image: url(../img/image2.jpg); 
+}
+
+section#third { 
+    background-image: url(../img/image3.jpg); 
+}
